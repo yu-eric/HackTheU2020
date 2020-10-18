@@ -24,7 +24,7 @@ def home_page():
             image_content += data
 
         # google api variables
-        project_id = "hack-the-u-2020 "
+        project_id = "hack-the-u-2020"
 
         prediction_client = automl.PredictionServiceClient()
 
