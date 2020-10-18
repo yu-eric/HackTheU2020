@@ -19,13 +19,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Primary Meta Tags -->
-  <title>SkinCheck Cancer Self-Checking</title>
+  <title>CoVision</title>
   <meta name="title" content="SkinCheck Self-Checking">
   <meta name="description"
         content="Skin cancer is one of the most common forms of cancers, but when detected quickly has a significantly higher survival rate.">
 
 
-  <title>SkinCheck Cancer Self-Checking</title>
+  <title>CoVision</title>
 
 
 </head>
@@ -59,13 +59,13 @@
 <header class="home-section">
   <div id="home-container" class="container d-flex h-100 align-items-center">
     <div class="mx-auto text-center">
-      <h2 class="mx-auto mt"> Melanoma is one of the most common cancers, but it is also one of the most survivable.<br><br>
-        We made a service to make your self-examinations easier:
+      <h2 class="mx-auto mt"> COVID-19 or Pneumonia?<br><br>
+        Our model will help you make an informed decision.
       </h2>
 
       <div class="row todo-row mt">
         <div class="col-1 todo-item">1</div>
-        <div class="col-9 col-sm-6"><p>Take a photo and upload it to our website to get results.</p></div>
+        <div class="col-9 col-sm-6"><p>Upload a photo of a patient's Chest X-Ray</p></div>
       </div>
       <br>
       <div class="row todo-row">
@@ -73,10 +73,10 @@
           2
         </div>
         <div class="col-9 col-sm-6">
-          <p>Learn more about melanoma prevention and statistics.</p>
+          <p>Make a guided decision based on the model's prediction</p>
         </div>
       </div>
-      <a href="#Try" class="btn-primary btn js-scroll-trigger">Try our service here!</a>
+      <a href="#Try" class="btn-primary btn js-scroll-trigger">Start now</a>
     </div>
   </div>
 </header>
@@ -93,8 +93,8 @@
       <div class="col-lg-10 mx-auto">
         <h2 class="text-white mb-4 section-title">Spot Self-Examination</h2>
         <p class="text-white-80">Select an image and upload it with the button below and press submit.</p>
-        <p class="text-white-80">This calculator will give you a percent certainty that
-          our algorithm believes that the image you supplied is melanoma</p>
+        <p class="text-white-80">Our model will give you a percent certainty that
+          the patient either has COVID-19, or pneumonia.</p>
       </div>
     </div>
 
@@ -129,9 +129,7 @@
                     <div id="certainty" class="result-percent text-black-50">{{ measure }}</div>
                 </div>
                 {% if guess_mal %}
-                  <div class="text-black-50"> <br>Given the results, our algorithm has found it's likely that you might have a melanoma.
-                      This website cannot guarantee nor act as medical advice, but we highly recommend that you see your doctor or
-                      dermatologist if not only for your own protection.
+                  <div class="text-black-50"> <br>Our model shows that there is a high percentage the patient has COVID-19.
                   </div>
                 {% endif %}
                 <div class="text-black-50" ><br>If you would like to know more about how this decision was made, 
@@ -143,40 +141,18 @@
     </form>
 </section>
 
-<section id="Learn" class="learn-section">
-    <div class="container">
-      <div class="row" id="about-title">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4 text-center section-title">What is Skin Cancer?</h2>
-          <p class="text-white-80">Skin cancer, like other cancers, is the abnormal growth of cells.
-            This can happen because of a variety of ways, and one of the leading causes of these
-            lesions is exposure to the sun. The UV rays of the sun help stimulate our skin cells
-            to create vitamin D, which is essential to life, but UV rays also damage cell DNA in
-            cases of large exposure.
-          </p>
-          <p class="text-white-80">
-            However, melanomas can appear on ones skin often with no prolonged exposure to the sun,
-            which is why it's ideal to self-examine all moles or lesions that are noticed.
-          </p>
-          <p></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
 <section class="about-section bg-light" id="About">
   <div class="container">
     <div class="row" id="about-title">
       <div class="col-lg-8 mx-auto">
-        <h2 class="text-white mb-4 text-center section-title">About Skin Cancer Detection</h2>
-        <p class="text-white-80">In order to accurately pinpoint malignant and benign growths, SkinCheck
+        <h2 class="text-white mb-4 text-center section-title">About</h2>
+        <p class="text-white-80">In order to accurately make a prediction, our model
           uses a reinforcement machine learning (ML) algorithm. The role of computing in medicine has
-          grown exponentially over the last few decades with the advent of more robust ML algorithms
-          leading to results such as the case of SkinCheck.
+          grown exponentially over the last few decades with the advent of more robust tools available to users like us,
+          leading to projects such as CoVision.
         </p>
         <p class="text-white-80">
-          By taking a dataset of thousands of malignant and benign growths taken by doctors, we are
-          able to have our algorithm distinguish with a range of certainty if a growth is cancerous.
+          By taking an open-source data set of Chest X-Rays, we can train our model to accurately detect the presence of COIVD-19.
         </p>
         <p></p>
         
@@ -186,26 +162,11 @@
           <div class="row about-content-row">
             <div class="col-md-6 col-sm-12 about-content-text">
               <h3 class="text-white mb-4" style="width:100%">Look at the Data</h3>
-              <p class="text-white mb-4">The dataset is publicly avaiable at the ISIC archive <a href="https://www.isic-archive.com/">here</a>.
+              <p class="text-white mb-4">The dataset we used is publicly avaiable <a href="https://github.com/ieee8023/covid-chestxray-dataset">here</a>.
               </p>
             </div>
           </div>
         </div>
-
-        <h2 class="text-white mb-4 text-center section-title">Our Process</h2>
-        <p class="text-white-80">After downloading the dataset, we had roughly 20,000 images that were not labelled
-          nor descriptive, which made it difficult for us to quickly discern which images were benign and which
-          images were malignant. To aid this problem, we used the supplied metadata of these images which
-          contained a field for benign or malignant and the Pandas data science library in python to parse and
-          rename all files such that they were identifiable with an ID number and by whether they were
-          malignant or benign.
-
-        </p>
-        <p class="text-white-80">
-          From here, we were able to create a classification in Google Cloud's AutoML image classification platform to assist in
-          putting each image in computer "readable" form in order to create the model that helps you self exam!
-        </p>
-        <p></p>
       </div>
     </div>
   </div>
