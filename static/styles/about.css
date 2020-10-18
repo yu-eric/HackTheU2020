@@ -1,0 +1,21 @@
+.about-section{
+    color:#fff;
+    position:relative;
+    width:100%;
+    height:auto;
+    min-height:100vh;
+    background:-webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(12,31,55,.9)),color-stop(75%,rgba(57,74,92,.9)),to(#394a5c));
+    background:linear-gradient(to bottom,#0c1f37 0,rgba(57,74,92,.9) 75%,#154d91 100%);
+    background-repeat:no-repeat;
+    background-attachment:scroll;
+    background-size:cover;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center
+}

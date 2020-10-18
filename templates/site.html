@@ -1,0 +1,261 @@
+<!--Credit to bootstrap template off of mlco2 that we based this off of-->
+<!DOCTYPE html>
+<html lang="en">
+<link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/bootstrap.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/all.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/css.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/try.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/nav.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/home.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/about.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='styles/learn.css') }}" rel="stylesheet">
+<script src="{{ url_for('static',filename='styles/bootstrap.js') }}"></script>
+
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Primary Meta Tags -->
+  <title>SkinCheck Cancer Self-Checking</title>
+  <meta name="title" content="SkinCheck Self-Checking">
+  <meta name="description"
+        content="Skin cancer is one of the most common forms of cancers, but when detected quickly has a significantly higher survival rate.">
+
+
+  <title>SkinCheck Cancer Self-Checking</title>
+
+
+</head>
+
+<body id="page">
+<span id="home" style="display: hidden"></span>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#home">SkinCheck</a>
+    <button type="button" class="navbar-toggler navbar-toggler-right collapsed" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a id="compute-nav-link" class="nav-link js-scroll-trigger" href="#Try">Try it Out</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#Learn">Learn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#About">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="home-section">
+  <div id="home-container" class="container d-flex h-100 align-items-center">
+    <div class="mx-auto text-center">
+      <h2 class="mx-auto mt"> Melanoma is one of the most common cancers, but it is also one of the most survivable.<br><br>
+        We made a service to make your self-examinations easier:
+      </h2>
+
+      <div class="row todo-row mt">
+        <div class="col-1 todo-item">1</div>
+        <div class="col-9 col-sm-6"><p>Take a photo and upload it to our website to get results.</p></div>
+      </div>
+      <br>
+      <div class="row todo-row">
+        <div class="col-1 todo-item">
+          2
+        </div>
+        <div class="col-9 col-sm-6">
+          <p>Learn more about melanoma prevention and statistics.</p>
+        </div>
+      </div>
+      <a href="#Try" class="btn-primary btn js-scroll-trigger">Try our service here!</a>
+    </div>
+  </div>
+</header>
+
+
+<section id="Try" class="compute-section text-center">
+  <div id="compute-loader" style="display: none;">
+    <div class="spinner-border text-light" style="width: 6rem; height: 6rem;" role="status">
+    </div>
+    <div style="margin-top: 3rem" class="text-white-80">Loading Data</div>
+  </div>
+  <div id="compute-container" class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h2 class="text-white mb-4 section-title">Spot Self-Examination</h2>
+        <p class="text-white-80">Select an image and upload it with the button below and press submit.</p>
+        <p class="text-white-80">This calculator will give you a percent certainty that
+          our algorithm believes that the image you supplied is melanoma</p>
+      </div>
+    </div>
+
+    <form id="compute-form" novalidate="" method="POST" enctype="multipart/form-data">
+      <div class="file-upload">
+        <input class="file-upload__input" type="file" onchange="readURL(this)" name="myFile" id="myFile" accept="image/*">
+        <button class="btn-primary btn file-upload__button" type="button">Choose File</button>
+        <br>
+        <img id="myImage" src="" alt="">
+        <span id="image-label" class="file-upload__label"></span>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <button disabled="disabled" type="submit" id="compute-submit" class="btn btn-primary">Submit Image</button>
+        </div>
+      </div>
+      {% if done %}
+      <div class="row" id="result-row">
+
+        <div id="result-card" class="col-md-6 col-8">
+
+            <!-- main card -->
+
+            <div class="row">
+                <div class="col-md-6 result-box" id="result-emitted">
+                    <div id="compute-classification" class="result-title small text-uppercase text-black-50" style="height: 14px;">
+                        Type </div>
+                    <div id="class" class="result-class text-black-50">{{ class_ }}</div>
+                </div>
+                <div class="col-md-6 result-box" id="result-offset">
+                    <div id="compute-certainty" class="result-title small text-uppercase text-black-50" style="height: 14px;">Percent Certainty</div>
+                    <div id="certainty" class="result-percent text-black-50">{{ measure }}</div>
+                </div>
+                {% if guess_mal %}
+                  <div class="text-black-50"> <br>Given the results, our algorithm has found it's likely that you might have a melanoma.
+                      This website cannot guarantee nor act as medical advice, but we highly recommend that you see your doctor or
+                      dermatologist if not only for your own protection.
+                  </div>
+                {% endif %}
+                <div class="text-black-50" ><br>If you would like to know more about how this decision was made, 
+                    please visit the About section below.</div>
+            </div>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+</section>
+
+<section id="Learn" class="learn-section">
+    <div class="container">
+      <div class="row" id="about-title">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4 text-center section-title">What is Skin Cancer?</h2>
+          <p class="text-white-80">Skin cancer, like other cancers, is the abnormal growth of cells.
+            This can happen because of a variety of ways, and one of the leading causes of these
+            lesions is exposure to the sun. The UV rays of the sun help stimulate our skin cells
+            to create vitamin D, which is essential to life, but UV rays also damage cell DNA in
+            cases of large exposure.
+          </p>
+          <p class="text-white-80">
+            However, melanomas can appear on ones skin often with no prolonged exposure to the sun,
+            which is why it's ideal to self-examine all moles or lesions that are noticed.
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="about-section bg-light" id="About">
+  <div class="container">
+    <div class="row" id="about-title">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="text-white mb-4 text-center section-title">About Skin Cancer Detection</h2>
+        <p class="text-white-80">In order to accurately pinpoint malignant and benign growths, SkinCheck
+          uses a reinforcement machine learning (ML) algorithm. The role of computing in medicine has
+          grown exponentially over the last few decades with the advent of more robust ML algorithms
+          leading to results such as the case of SkinCheck.
+        </p>
+        <p class="text-white-80">
+          By taking a dataset of thousands of malignant and benign growths taken by doctors, we are
+          able to have our algorithm distinguish with a range of certainty if a growth is cancerous.
+        </p>
+        <p></p>
+        
+
+
+        <div class="about-content">
+          <div class="row about-content-row">
+            <div class="col-md-6 col-sm-12 about-content-text">
+              <h3 class="text-white mb-4" style="width:100%">Look at the Data</h3>
+              <p class="text-white mb-4">The dataset is publicly avaiable at the ISIC archive <a href="https://www.isic-archive.com/">here</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-white mb-4 text-center section-title">Our Process</h2>
+        <p class="text-white-80">After downloading the dataset, we had roughly 20,000 images that were not labelled
+          nor descriptive, which made it difficult for us to quickly discern which images were benign and which
+          images were malignant. To aid this problem, we used the supplied metadata of these images which
+          contained a field for benign or malignant and the Pandas data science library in python to parse and
+          rename all files such that they were identifiable with an ID number and by whether they were
+          malignant or benign.
+
+        </p>
+        <p class="text-white-80">
+          From here, we were able to create a classification in Google Cloud's AutoML image classification platform to assist in
+          putting each image in computer "readable" form in order to create the model that helps you self exam!
+        </p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+{% if done %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      //document.querySelector("#compute-form").scrollTop = "10px"
+      window.scrollTo(0, 800);
+  })
+</script>
+{% endif %}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = document.querySelector('#myImage');
+                image.setAttribute('src', e.target.result);
+                image.style.width = "200px";
+                image.style.height = "200px";
+            };
+            reader.readAsDataURL(input.files[0]);
+            document.querySelector("#image-label").remove();
+            document.querySelector("#compute-submit").removeAttribute("disabled");
+        }
+    }
+</script>
+<script>
+    // Add IE support xd
+    Array.prototype.forEach.call(document.querySelectorAll(".file-upload__button"), function (button) {
+        const input = button.parentElement.querySelector('.file-upload__input');
+        const label = button.parentElement.querySelector('.file-upload__label');
+        const defaultLabelText = 'No file selected';
+
+        label.textContent = defaultLabelText;
+
+        button.addEventListener('click', function () {
+            input.click();
+        });
+
+        input.addEventListener('change', function () {
+            const filenameList = Array.prototype.map.call(input.files, function (file) {
+                return file.name;
+            });
+
+            label.textContent = filenameList || defaultLabelText;
+            label.title = label.textContent;
+        })
+    })
+</script>
