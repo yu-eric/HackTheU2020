@@ -136,6 +136,23 @@
       </div>
       {% endif %}
     </form>
+
+    <div class="container">
+      <div class="row" id="about-title">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4 text-center section-title">Example Images</h2>
+            
+            <p class="text-white-80">
+              <img src="{{url_for('static', filename='covid.png')}}"><br>
+              COVID-19 positive patient
+              <img src="{{url_for('static', filename='pneumonia.jpeg')}}"><br>
+              Pneumonia positive patient
+            </p>
+            
+        </div>
+      </div>
+    </div>
+
 </section>
 
 <section class="about-section bg-light" id="About">

@@ -46,7 +46,7 @@ def home_page():
 
         context = {
             "done": True,
-            "guess_mal": class_ == "Malignant",
+            "guess_mal": class_ == "COVID_19",
             "class_": class_,
             "measure": '{:.2%}'.format(measure)
         }
