@@ -1,4 +1,4 @@
-## HackTheU 2020
+## CoVision
 # Inspiration
 We were inspired by the booming trends in big data, alongside the current ongoing pandeminc, and wanted to try to create a tool that would aid healthcare workers.
 # What it does
