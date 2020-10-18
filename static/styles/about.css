@@ -4,8 +4,8 @@
     width:100%;
     height:auto;
     min-height:100vh;
-    background:-webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(12,31,55,.9)),color-stop(75%,rgba(57,74,92,.9)),to(#394a5c));
-    background:linear-gradient(to bottom,#0c1f37 0,rgba(57,74,92,.9) 75%,#154d91 100%);
+    background:-webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(40, 99, 172, 0.9)),color-stop(75%,rgba(86, 122, 161, 0.9)),to(#394a5c));
+    background:linear-gradient(to bottom,#0c1f37 0,rgba(86, 122, 161, 0.9) 75%,#154d91 100%);
     background-repeat:no-repeat;
     background-attachment:scroll;
     background-size:cover;
